@@ -33,3 +33,16 @@ app.include_router(logistics.router, prefix="/api")
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
+
+if __name__ == "__main__":
+    import uvicorn
+    import logging
+    
+    # Configure logging to ensure we see startup errors
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+    
+    port = int(os.environ.get("PORT", 10000))
+    logger.info(f"Starting uvicorn on port {port}")
+    
+    uvicorn.run("main:app", host="0.0.0.0", port=port)

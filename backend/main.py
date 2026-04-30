@@ -1,14 +1,22 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
 from api.routes import summary, diagnostics, logistics
+
+load_dotenv()
+
 app = FastAPI(title="Digital Control Room API")
 
-# Configure CORS for Next.js frontend
-# Configure CORS
+# Allow localhost for dev + Vercel URL for production (set FRONTEND_URL on Render)
 origins = [
     "http://localhost:3000",
-    os.environ.get("FRONTEND_URL", "*")
+    "https://sr-portfolio.vercel.app",
+    os.environ.get("FRONTEND_URL", ""),
 ]
+
+# Remove any empty strings from origins list
+origins = [o for o in origins if o]
 
 app.add_middleware(
     CORSMiddleware,

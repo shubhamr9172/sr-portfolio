@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useMetrics } from '@/context/MetricsContext';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
 export default function HeroSearch() {
   const [jobDescription, setJobDescription] = useState('');
   const [summary, setSummary] = useState('');
@@ -15,7 +17,7 @@ export default function HeroSearch() {
     setSummary('');
     setMetrics(null);
     try {
-      const res = await fetch('http://localhost:8000/api/generate-summary', {
+      const res = await fetch(`${API_URL}/api/generate-summary`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ job_description: jobDescription }),
@@ -48,7 +50,7 @@ export default function HeroSearch() {
       return;
     }
     try {
-      const res = await fetch('http://localhost:8000/api/summary-constraints');
+      const res = await fetch(`${API_URL}/api/summary-constraints`);
       const data = await res.json();
       setConstraints(data.constraints);
     } catch (error) {

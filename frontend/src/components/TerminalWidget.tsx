@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useMetrics } from '@/context/MetricsContext';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
 export default function TerminalWidget() {
   const [logInput, setLogInput] = useState('');
   const [output, setOutput] = useState<React.ReactNode[]>([]);
@@ -22,7 +24,7 @@ export default function TerminalWidget() {
       // 1. Safety Check (Engineering Trap)
       addOutputLine(<div key="sc-init" className="text-amber-500 mt-2">Initiating NVIDIA Nemotron Content Safety Check...</div>);
       
-      const safetyRes = await fetch('http://localhost:8000/api/safety-check', {
+      const safetyRes = await fetch(`${API_URL}/api/safety-check`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ raw_log: logInput }),
@@ -52,7 +54,7 @@ export default function TerminalWidget() {
       // 2. Generate SOP
       addOutputLine(<div key="sop-init" className="text-zinc-400 mt-4">Routing log to NVIDIA Nemotron-120B for SOP generation...</div>);
       
-      const diagRes = await fetch('http://localhost:8000/api/diagnose-log', {
+      const diagRes = await fetch(`${API_URL}/api/diagnose-log`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ raw_log: logInput }),

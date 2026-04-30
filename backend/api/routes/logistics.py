@@ -12,7 +12,7 @@ router = APIRouter()
 # Initialize reasoning client
 reasoning_client = AsyncOpenAI(
     base_url="https://integrate.api.nvidia.com/v1",
-    api_key=os.environ.get("NEMOTRON_NANO_OMNI_REASONING_API_KEY") or os.environ.get("LLAMA_3_1_8B_INSTRUCT_API_KEY")
+    api_key=os.environ.get("NEMOTRON_NANO_OMNI_REASONING_API_KEY") or os.environ.get("LLAMA_3_1_8B_INSTRUCT_API_KEY", "missing_key")
 )
 
 class InvoiceRequest(BaseModel):

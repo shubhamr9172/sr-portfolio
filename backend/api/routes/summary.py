@@ -32,7 +32,7 @@ class SummaryResponse(BaseModel):
 # Initialize NVIDIA NIM client
 client = AsyncOpenAI(
     base_url="https://integrate.api.nvidia.com/v1",
-    api_key=os.environ.get("LLAMA_3_1_8B_INSTRUCT_API_KEY")
+    api_key=os.environ.get("LLAMA_3_1_8B_INSTRUCT_API_KEY", "missing_key")
 )
 
 @router.post("/generate-summary", response_model=SummaryResponse)

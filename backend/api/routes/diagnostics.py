@@ -11,12 +11,12 @@ router = APIRouter()
 
 safety_client = AsyncOpenAI(
     base_url="https://integrate.api.nvidia.com/v1",
-    api_key=os.environ.get("NEMOTRON_CONTENT_SAFETY_API_KEY")
+    api_key=os.environ.get("NEMOTRON_CONTENT_SAFETY_API_KEY", "missing_key")
 )
 
 sop_client = AsyncOpenAI(
     base_url="https://integrate.api.nvidia.com/v1",
-    api_key=os.environ.get("NEMOTRON_SUPER_120B_API_KEY") or os.environ.get("LLAMA_3_1_8B_INSTRUCT_API_KEY")
+    api_key=os.environ.get("NEMOTRON_SUPER_120B_API_KEY") or os.environ.get("LLAMA_3_1_8B_INSTRUCT_API_KEY", "missing_key")
 )
 
 class LogRequest(BaseModel):

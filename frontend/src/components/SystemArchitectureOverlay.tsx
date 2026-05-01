@@ -5,6 +5,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function SystemArchitectureOverlay() {
   const { metrics, developerMode } = useMetrics();
 
+  React.useEffect(() => {
+    if (developerMode) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [developerMode]);
+
   return (
     <AnimatePresence>
       {developerMode && (
@@ -12,16 +23,17 @@ export default function SystemArchitectureOverlay() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 pointer-events-none z-40 bg-zinc-950/95 flex flex-col items-center justify-center font-mono backdrop-blur-md"
+          className="fixed inset-0 z-40 bg-zinc-950/95 overflow-y-auto font-mono backdrop-blur-md"
         >
-          <motion.div 
-            initial={{ scale: 0.95, y: 20 }}
-            animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.95, y: 20 }}
-            className="w-full max-w-6xl p-8 pointer-events-auto"
-          >
-            <div className="flex justify-between items-end mb-8 border-b-2 border-gold pb-4">
-              <h2 className="text-3xl text-gold tracking-[0.2em] uppercase">
+          <div className="min-h-screen w-full flex flex-col items-center p-4 md:p-8 pt-24 md:pt-28">
+            <motion.div 
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
+              className="w-full max-w-6xl"
+            >
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b-2 border-gold pb-4 gap-4">
+              <h2 className="text-2xl md:text-3xl text-gold tracking-[0.2em] uppercase">
                 System Architecture & Telemetry
               </h2>
               <div className="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">
@@ -93,8 +105,8 @@ export default function SystemArchitectureOverlay() {
                         <th className="px-4 py-3 font-bold">Timestamp</th>
                         <th className="px-4 py-3 font-bold">Endpoint_Route</th>
                         <th className="px-4 py-3 font-bold text-gold">Latency_ms</th>
-                        <th className="px-4 py-3 font-bold">Tokens_In</th>
-                        <th className="px-4 py-3 font-bold">Tokens_Out</th>
+                        <th className="px-4 py-3 font-bold hidden md:table-cell">Tokens_In</th>
+                        <th className="px-4 py-3 font-bold hidden md:table-cell">Tokens_Out</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-zinc-800">
@@ -110,8 +122,8 @@ export default function SystemArchitectureOverlay() {
                           </td>
                           <td className="px-4 py-3 text-emerald-400 font-mono text-xs">{m.endpoint}</td>
                           <td className="px-4 py-3 text-gold font-bold font-mono">{m.latency_ms}</td>
-                          <td className="px-4 py-3 font-mono text-xs">{m.prompt_tokens}</td>
-                          <td className="px-4 py-3 font-mono text-xs">{m.completion_tokens}</td>
+                          <td className="px-4 py-3 font-mono text-xs hidden md:table-cell">{m.prompt_tokens}</td>
+                          <td className="px-4 py-3 font-mono text-xs hidden md:table-cell">{m.completion_tokens}</td>
                         </motion.tr>
                       ))}
                     </tbody>
@@ -119,7 +131,8 @@ export default function SystemArchitectureOverlay() {
                 </div>
               )}
             </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

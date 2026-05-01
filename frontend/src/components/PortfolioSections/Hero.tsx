@@ -46,7 +46,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-6xl md:text-8xl font-bold mb-8 tracking-tighter text-white leading-[0.9]"
+            className="text-5xl md:text-8xl font-bold mb-8 tracking-tighter text-white leading-[0.9]"
           >
             I'm <span className="text-gold">Shubham</span>
             <br/>Reddy<span className="text-gold">.</span>
@@ -65,7 +65,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-lg md:text-xl text-zinc-500 max-w-xl mb-12 leading-relaxed font-light"
+            className="text-base md:text-xl text-zinc-500 max-w-xl mb-12 leading-relaxed font-light"
           >
             Architecting <span className="text-zinc-100 font-medium">intelligent systems</span> that bridge enterprise support and Generative AI. Specializing in high-availability automation and LLM-driven operational efficiency.
           </motion.p>
@@ -74,13 +74,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex flex-wrap gap-6"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6"
           >
-            <a href="/Shubham_Resume.pdf" target="_blank" className="group relative px-8 py-4 overflow-hidden rounded bg-gold text-black font-bold no-underline">
-              <span className="relative z-10 font-mono text-sm uppercase tracking-wider">Download_CV.pdf</span>
+            <a href="/Shubham_Resume.pdf" download="Shubham_Reddy_Resume.pdf" target="_blank" className="group relative px-6 py-4 md:px-8 md:py-4 overflow-hidden rounded bg-gold text-black font-bold no-underline text-center">
+              <span className="relative z-10 font-mono text-xs md:text-sm uppercase tracking-wider">Download_CV.pdf</span>
               <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             </a>
-            <button onClick={() => document.getElementById('demos')?.scrollIntoView({ behavior: 'smooth' })} className="px-8 py-4 bg-transparent border border-zinc-700 hover:border-gold hover:text-gold transition-all duration-300 font-mono text-sm uppercase tracking-wider rounded cursor-pointer group">
+            <button onClick={() => document.getElementById('demos')?.scrollIntoView({ behavior: 'smooth' })} className="px-6 py-4 md:px-8 md:py-4 bg-transparent border border-zinc-700 hover:border-gold hover:text-gold transition-all duration-300 font-mono text-xs md:text-sm uppercase tracking-wider rounded cursor-pointer group text-center">
               <span className="group-hover:tracking-[0.2em] transition-all">Initialize_Demos</span>
             </button>
           </motion.div>

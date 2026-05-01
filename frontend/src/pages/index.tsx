@@ -19,12 +19,12 @@ export default function Home() {
       
       <main className="min-h-screen bg-black text-zinc-100 selection:bg-gold selection:text-black">
         {/* Navigation / Header */}
-        <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-900 bg-black/80 backdrop-blur-md px-6 py-4 flex justify-between items-center">
+        <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-900 bg-black/80 backdrop-blur-md px-4 md:px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <div className="w-8 h-8 bg-gold rounded flex items-center justify-center text-black font-bold text-xs">CR</div>
             <div className="text-sm font-bold tracking-[0.2em] text-zinc-100 hidden md:block">DIGITAL_CONTROL_ROOM_v1.0</div>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 md:gap-6">
             <nav className="hidden md:flex items-center gap-6 text-xs font-mono tracking-widest text-zinc-500 uppercase">
               <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-gold transition-colors cursor-pointer bg-transparent border-none">System_Init</button>
               <button onClick={() => document.getElementById('demos')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-gold transition-colors cursor-pointer bg-transparent border-none">Live_Demos</button>
@@ -34,12 +34,14 @@ export default function Home() {
             <div className="h-4 w-px bg-zinc-800 hidden md:block"></div>
             <div className="text-[10px] font-mono text-gold flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></div>
-              SECURE_LINK_ACTIVE
+              <span className="hidden min-[450px]:inline">SECURE_LINK_ACTIVE</span>
+              <span className="min-[450px]:hidden">SECURE</span>
             </div>
+            <div className="h-4 w-px bg-zinc-800"></div>
+            <DeveloperModeToggle />
           </div>
         </header>
 
-        <DeveloperModeToggle />
         <SystemArchitectureOverlay />
 
         {/* Hero Section */}
@@ -158,7 +160,7 @@ export default function Home() {
             <div className="mb-12 flex justify-center gap-8 text-zinc-500">
               <a href="https://linkedin.com/in/shubham-reddy" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors font-mono text-xs uppercase tracking-widest no-underline border-b border-transparent hover:border-gold pb-1">LinkedIn</a>
               <a href="https://github.com/shubhamreddy91" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors font-mono text-xs uppercase tracking-widest no-underline border-b border-transparent hover:border-gold pb-1">GitHub</a>
-              <a href="/Shubham_Resume.pdf" target="_blank" className="hover:text-gold transition-colors font-mono text-xs uppercase tracking-widest no-underline border-b border-transparent hover:border-gold pb-1">Download_CV</a>
+              <a href="/Shubham_Resume.pdf" download="Shubham_Reddy_Resume.pdf" target="_blank" className="hover:text-gold transition-colors font-mono text-xs uppercase tracking-widest no-underline border-b border-transparent hover:border-gold pb-1">Download_CV</a>
             </div>
             
             <p className="text-zinc-600 text-[10px] font-mono mb-4 uppercase tracking-[0.2em]">
